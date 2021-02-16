@@ -1,6 +1,8 @@
 package pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -67,6 +69,21 @@ public class BasePage {
         Assert.assertTrue(actual,"Element is disabled!");
     }
 
+
+
+    public static WebElement scroll(WebDriver driver, String text){
+        String automatorString = "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+text+"\"));";
+                return ((AndroidDriver)driver).findElementByAndroidUIAutomator(automatorString);
+    }
+
+    public static void waitForElement(long sleep){
+
+        try{
+            Thread.sleep(sleep);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 
